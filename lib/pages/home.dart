@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx/controllers/app_controllers.dart';
-import 'package:flutter_getx/pages/chat.dart';
-import 'package:flutter_getx/pages/feed.dart';
-import 'package:flutter_getx/pages/profile.dart';
+import 'package:flutter_getx/pages/product/product_cart_page.dart';
+import 'package:flutter_getx/pages/product/product_gridview_page.dart';
 import 'package:get/get.dart';
+import 'package:nil/nil.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  static final _controller = Get.put(AppControllers());
-
   @override
   Widget build(BuildContext context) {
-    return GetX<AppControllers>(
+    return GetBuilder<AppControllers>(
       init: AppControllers(),
       builder: (controller) => Scaffold(
         appBar: AppBar(
-          title: const Text('Counter'),
+          title: const Text('Marketplace'),
         ),
-        body: Container(),
+        body: SingleChildScrollView(
+          child: LayoutBuilder(
+            builder: (_, constraints) {
+              return Wrap(
+                children: [
+                  controller.listCartItem.isEmpty
+                      ? Container()
+                      : ProductCartPage(),
+                  ProductGridviewPage(),
+                ],
+              );
+            },
+          ),
+        ),
       ),
     );
   }
