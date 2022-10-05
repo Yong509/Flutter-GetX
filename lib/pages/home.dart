@@ -18,34 +18,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Counter'),
         ),
-        body: IndexedStack(
-          index: _controller.navIndex.value,
-          children: const [
-            FeedPage(),
-            ChatPage(),
-            ProfilePage(),
-          ],
-        ),
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _controller.navIndex.value,
-          onDestinationSelected: ((value) {
-            _controller.navIndex.value = value;
-          }),
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.feed),
-              label: 'Feed',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.chat),
-              label: 'Chat',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.account_circle),
-              label: 'Profile',
-            ),
-          ],
-        ),
+        body: Container(),
       ),
     );
   }
